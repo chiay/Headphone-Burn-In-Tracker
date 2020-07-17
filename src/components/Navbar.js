@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Link } from "react-router-dom";
 import { Modal } from "react-bootstrap";
 import axios from "axios";
 
@@ -28,23 +27,24 @@ export default function Navbar() {
 		} catch (err) {
 			console.error(err);
 		}
+
+		window.location.replace('/');
 	}
 
 	return (
 		<>
-			<nav className="navbar navbar-expand-lg navbar-light" style={{backgroundColor: "#071a52"}}>
-				<Link to="/" className="navbar-brand" style={{color: "#17b978"}}>Headphone Burn-in Tracker</Link>
-				<div className="collapse navbar-collapse">
-					<ul className="navbar-nav mr-auto">
-						<li className="navbar-item">
-							<a className="nav-link" style={{color: "grey", cursor: "pointer"}} onClick={handleShow}>Create New</a>
-						</li>
-						<li className="navbar-item">
-							<a href="https://github.com/chiay/Headphone-Burn-In-Tracker" className="nav-link" style={{color: "grey"}}>GitHub</a>
-						</li>
-					</ul>
+			<div className="d-flex justify-content-center rounded" style={{backgroundColor: "#071a52"}}>
+				<h1 style={{color: "#17b978"}}>Headphone Burn-in Tracker</h1>
+			</div>
+
+			<div className="row my-4">
+				<div className="col">
+					<button className="btn btn-secondary" onClick={handleShow}>+ Create New</button>
 				</div>
-			</nav>
+				<div className="col d-flex justify-content-end">
+					<button className="btn btn-secondary">GitHub</button>
+				</div>
+			</div>
 
 			<Modal show={show} onHide={handleClose}>
 				<Modal.Header closeButton>
@@ -53,7 +53,7 @@ export default function Navbar() {
 				<Modal.Body>
 					<form onSubmit={ onSubmitName }>
 						<div className="form-group">
-							<input type="text" className="form-control" id="name" required placeholder="Headphone" onChange={ onChangeName }/>
+							<input type="text" className="form-control" id="name" required autofocus autocomplete="off" placeholder="Headphone" onChange={ onChangeName }/>
 						</div>
 						<button type="submit" className="btn btn-primary">Submit</button>
 					</form>
